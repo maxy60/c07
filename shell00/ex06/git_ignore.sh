@@ -1,2 +1,2 @@
 #!/bin/sh
-git status -s --ignored
+git ls-files --o --i --exclude-standard
