@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 14:03:00 by msainton          #+#    #+#             */
-/*   Updated: 2021/05/24 15:18:12 by msainton         ###   ########.fr       */
+/*   Created: 2021/05/25 15:05:10 by msainton          #+#    #+#             */
+/*   Updated: 2021/05/27 14:16:26 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	char		*d;
-	const char	*s;
-
-	d = dest;
-	s = src;
-	while (n)
+	size_t a;
+	size_t b;
+	
+	a = ft_strlen(dest);
+	b = 0;
+	if (size == 0)
+		return (0);
+	if (size - 1 <= a)
+		return (size + ft_strlen(src));
+	while (a + b < size - 1)
 	{
-		*d = *s;
-		s++;
-		d++;
-		n--;
+		dest[a + b] = src[b];
+		b++;
 	}
-	return (dest);
+	dest[a + b] = '\0';
+	return (a + ft_strlen(src));
 }

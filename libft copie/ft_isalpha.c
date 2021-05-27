@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 14:03:00 by msainton          #+#    #+#             */
-/*   Updated: 2021/05/24 15:18:12 by msainton         ###   ########.fr       */
+/*   Created: 2021/05/21 16:39:07 by msainton          #+#    #+#             */
+/*   Updated: 2021/05/24 15:31:34 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int	ft_isalpha(int c)
 {
-	char		*d;
-	const char	*s;
-
-	d = dest;
-	s = src;
-	while (n)
-	{
-		*d = *s;
-		s++;
-		d++;
-		n--;
-	}
-	return (dest);
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+		return (1);
+	return (0);
 }

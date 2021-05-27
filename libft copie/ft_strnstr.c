@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 14:03:00 by msainton          #+#    #+#             */
-/*   Updated: 2021/05/24 15:18:12 by msainton         ###   ########.fr       */
+/*   Created: 2021/05/26 12:18:25 by msainton          #+#    #+#             */
+/*   Updated: 2021/05/26 14:41:57 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	char		*d;
-	const char	*s;
+	size_t a;
+	size_t b;
 
-	d = dest;
-	s = src;
-	while (n)
+	a = 0;
+	if (s2[a] == '\0')
+		return ((char *)s1);
+	while (s1[a] && a < n)
 	{
-		*d = *s;
-		s++;
-		d++;
-		n--;
+		b = 0;
+		while (s2[b] == s1[a + b] && a + b < n)
+		{
+			if (s2[b + 1] == '\0')
+				return ((char *)&s1[a]);
+			b++;
+		}
+		a++;
 	}
-	return (dest);
+	return (NULL);
 }

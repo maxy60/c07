@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 14:03:00 by msainton          #+#    #+#             */
-/*   Updated: 2021/05/24 15:18:12 by msainton         ###   ########.fr       */
+/*   Created: 2021/05/27 10:36:07 by msainton          #+#    #+#             */
+/*   Updated: 2021/05/27 11:07:37 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char		*d;
-	const char	*s;
+	void *dest;
 
-	d = dest;
-	s = src;
-	while (n)
-	{
-		*d = *s;
-		s++;
-		d++;
-		n--;
-	}
+	if (!(dest = (void *)malloc(sizeof(void) * nmemb * size)))
+		return (NULL);
+	ft_bzero(dest, (nmemb * size));
 	return (dest);
 }

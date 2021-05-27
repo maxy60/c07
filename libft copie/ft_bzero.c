@@ -6,7 +6,7 @@
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:48:30 by msainton          #+#    #+#             */
-/*   Updated: 2021/05/20 15:02:17 by msainton         ###   ########.fr       */
+/*   Updated: 2021/05/24 11:08:14 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	char *str;
+	char	*str;
+	size_t	a;
 
 	str = s;
-	while (n)
+	a = 0;
+	while (a < n)
 	{
-		*str = '0';
+		*str = 0;
 		str++;
-		n--;
+		a++;
 	}
 	return ;
 }
-//#include <stdio.h>
-//int main()

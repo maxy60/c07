@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 14:03:00 by msainton          #+#    #+#             */
-/*   Updated: 2021/05/24 15:18:12 by msainton         ###   ########.fr       */
+/*   Created: 2021/05/27 14:12:51 by msainton          #+#    #+#             */
+/*   Updated: 2021/05/27 15:54:01 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+char	*ft_strtrim(const char *s1, const char *set)
 {
-	char		*d;
-	const char	*s;
+	char *dest;
 
-	d = dest;
-	s = src;
-	while (n)
-	{
-		*d = *s;
-		s++;
-		d++;
-		n--;
-	}
-	return (dest);
+	if (!(dest = (char *)malloc(sizeof(char) )))
+
 }
+
+test test cava test 
+test
