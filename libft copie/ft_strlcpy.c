@@ -6,7 +6,7 @@
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 11:17:54 by msainton          #+#    #+#             */
-/*   Updated: 2021/05/25 15:04:59 by msainton         ###   ########.fr       */
+/*   Updated: 2021/06/18 17:17:57 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	size_t a;
-	size_t b;
+	size_t	a;
+	size_t	b;
 
 	b = 0;
 	if (!dest || !src)

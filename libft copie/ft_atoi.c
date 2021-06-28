@@ -6,32 +6,32 @@
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:43:49 by msainton          #+#    #+#             */
-/*   Updated: 2021/05/26 15:16:46 by msainton         ###   ########.fr       */
+/*   Updated: 2021/06/22 11:00:44 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+
 int	ft_atoi(const char *str)
 {
-	int a;
-	int sign;
-	int nbr;
+	int	a;
+	int	sign;
+	int	nbr;
 
 	a = 0;
 	sign = 1;
 	nbr = 0;
 	while ((str[a] >= 9 && str[a] <= 13) || str[a] == ' ')
 		a++;
-	while (str[a] == '+' || str[a] == '-')
+	if (str[a] == '+' || str[a] == '-')
 	{
 		if (str[a] == '-')
-			sign = sign * - 1;
+			sign = sign * -1;
 		a++;
 	}
 	while (str[a] >= 48 && str[a] <= 57)
 	{
-		nbr  = nbr *  10 + str[a] -48;
+		nbr = nbr * 10 + str[a] - 48;
 		a++;
 	}
 	nbr = nbr * sign;

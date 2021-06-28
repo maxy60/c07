@@ -6,7 +6,7 @@
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 12:18:25 by msainton          #+#    #+#             */
-/*   Updated: 2021/05/26 14:41:57 by msainton         ###   ########.fr       */
+/*   Updated: 2021/06/14 11:10:51 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	size_t a;
-	size_t b;
+	size_t	a;
+	size_t	b;
 
 	a = 0;
 	if (s2[a] == '\0')
