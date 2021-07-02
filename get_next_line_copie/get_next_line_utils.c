@@ -56,13 +56,13 @@ char	*stock_line(char *dest)
 	char	*str;
 
 	a = 0;
-	while (dest[a] != '\n')
+	while (dest[a] != '\0' && dest[a] != '\n')
 		a++;
 	str = (char *)malloc(sizeof(char) * a + 1);
 	if (!str)
 		return (NULL);
 	a = 0;
-	while (dest[a] != '\n')
+	while (dest[a] != '\0' && dest[a] != '\n')
 	{
 		str[a] = dest[a];
 		a++;
@@ -81,7 +81,7 @@ char	*stock_rest(char *dest)
 	while (dest[a])
 		a++;
 	b = 0;
-	while (dest[b] != '\n')
+	while (dest[b] != '\0' && dest[b] != '\n')
 		b++;
 	str = (char *)malloc(sizeof(char) * (a - b) + 1);
 	if (!str)
@@ -92,5 +92,6 @@ char	*stock_rest(char *dest)
 		str[a++] = dest[b++];
 	str[a] = '\0';
 	free(dest);
+	dest = NULL;
 	return (str);
 }

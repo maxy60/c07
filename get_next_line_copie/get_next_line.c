@@ -12,11 +12,13 @@
 
 #include "get_next_line.h"
 
-int	check(char *str)
+static int	check(char *str)
 {
 	size_t	a;
 
 	a = 0;
+	if (!str)
+		return (0);
 	while (str[a])
 	{
 		if (str[a] == '\n')
@@ -24,6 +26,13 @@ int	check(char *str)
 		a++;
 	}
 	return (0);
+}
+
+static int	ft_error(char *dest)
+{
+	if (dest)
+		free(dest);
+	return (-1);
 }
 
 int	get_next_line(int fd, char **line)
@@ -35,37 +44,30 @@ int	get_next_line(int fd, char **line)
 	ret = 1;
 //	if (!dest)
 //		dest = (char *)malloc(sizeof(char) * 1);
-	if (BUFFER_SIZE <= 0 || fd == -1 || !line)
-		return (-1);
+	if (BUFFER_SIZE < 1 || fd < 0 || !line || read(fd, NULL, 0) != 0)
+		return (ft_error(dest));
 	if (!dest)
 		dest = (char *)malloc(sizeof(char) * 1);
-//	buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-//	if (!buf)
-//		return (-1);
 	while (ret != 0 && check(dest) == 0)
 	{
 		ret = read(fd, buf, BUFFER_SIZE);
 		if (ret == -1)
-		{
-//			free(buf);
-			return (-1);
-		}
+			return (ft_error(dest));
 		buf[ret] = '\0';
 		dest = ft_strjoin(dest, buf);
 	}
-//	free(buf);
+	*line = stock_line(dest);
+	dest = stock_rest(dest);
 	if (ret == 0)
 	{
 		free(dest);
-		free(line);
+		dest = 0;
 		return (0);
 	}
-	*line = stock_line(dest);
-	dest = stock_rest(dest);
 	return (1);
 }
 
-int	main()
+/*int	main()
 {
 	char *line;
 	int fd;
@@ -96,4 +98,10 @@ int	main()
 	get_next_line(fd, &line);
 	printf("line 8: %s\n", line);
 	free(line);
-}
+	get_next_line(fd, &line);
+	printf("line 9: %s\n", line);
+	free(line);
+	get_next_line(fd, &line);
+	printf("line 10: %s\n", line);
+	free(line);
+}*/
