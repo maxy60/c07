@@ -6,7 +6,7 @@
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 10:56:21 by msainton          #+#    #+#             */
-/*   Updated: 2021/06/22 17:13:03 by msainton         ###   ########.fr       */
+/*   Updated: 2021/07/05 15:10:28 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check(char *str)
 		return (0);
 	while (str[a])
 	{
-		if (str[a] == '\n')
+		if (str[a] == '\n' || str[a] == '\0')
 			return (1);
 		a++;
 	}
@@ -31,23 +31,27 @@ static int	check(char *str)
 static int	ft_error(char *dest)
 {
 	if (dest)
+	{
 		free(dest);
+		dest = 0;
+	}
 	return (-1);
 }
 
 int	get_next_line(int fd, char **line)
 { 
 	char		buf[BUFFER_SIZE + 1];
-	static char	*dest;
+	static char	*dest = NULL;
 	int			ret;
 	
 	ret = 1;
-//	if (!dest)
-//		dest = (char *)malloc(sizeof(char) * 1);
 	if (BUFFER_SIZE < 1 || fd < 0 || !line || read(fd, NULL, 0) != 0)
 		return (ft_error(dest));
 	if (!dest)
+	{
 		dest = (char *)malloc(sizeof(char) * 1);
+		dest[0] = '\0';
+	}
 	while (ret != 0 && check(dest) == 0)
 	{
 		ret = read(fd, buf, BUFFER_SIZE);
@@ -71,37 +75,18 @@ int	get_next_line(int fd, char **line)
 {
 	char *line;
 	int fd;
+	int i = 1;
+	int ret = 1;
 
-	fd = open("test.txt", O_RDONLY);
-	if (get_next_line(fd, &line) == -1)
-		return (0);
-	printf("line 1: %s\n", line);
-	free(line);
+	fd = open("42_with_nl", O_RDONLY);
+	while ((ret = get_next_line(fd, &line)))
+	{
+
+		printf(" fuck ret = %d line %d; %s\n",ret ,i , line);
+		i++;
+	}
+	printf("ret = %d line %d; %s\n", ret, i, line);
 	get_next_line(fd, &line);
-	printf("line 2: %s\n", line);
-	free(line);
-	get_next_line(fd, &line);
-	printf("line 3: %s\n", line);
-	free(line);
-	get_next_line(fd, &line);
-	printf("line 4: %s\n", line);
-	free(line);
-	get_next_line(fd, &line);
-	printf("line 5: %s\n", line);
-	free(line);
-	get_next_line(fd, &line);
-	printf("line 6: %s\n", line);
-	free(line);
-	get_next_line(fd, &line);
-	printf("line 7: %s\n", line);
-	free(line);
-	get_next_line(fd, &line);
-	printf("line 8: %s\n", line);
-	free(line);
-	get_next_line(fd, &line);
-	printf("line 9: %s\n", line);
-	free(line);
-	get_next_line(fd, &line);
-	printf("line 10: %s\n", line);
+	printf("ret = %d line free: %s\n", ret, line);
 	free(line);
 }*/

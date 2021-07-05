@@ -6,7 +6,7 @@
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 10:59:12 by msainton          #+#    #+#             */
-/*   Updated: 2021/06/22 16:00:06 by msainton         ###   ########.fr       */
+/*   Updated: 2021/07/05 14:10:26 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,21 +73,22 @@ char	*stock_line(char *dest)
 
 char	*stock_rest(char *dest)
 {
-	size_t	a;
-	size_t	b;
+	int		a;
+	int		b;
 	char	*str;
 
 	a = 0;
+	if (!dest)
+		return (NULL);
 	while (dest[a])
 		a++;
 	b = 0;
 	while (dest[b] != '\0' && dest[b] != '\n')
 		b++;
-	str = (char *)malloc(sizeof(char) * (a - b) + 1);
+	str = (char *)malloc(sizeof(char) * (a - b + 1));
 	if (!str)
 		return (NULL);
-	a = 0;
-	b++;
+	a = -1;
 	while (dest[b] != '\0')
 		str[a++] = dest[b++];
 	str[a] = '\0';
