@@ -6,7 +6,7 @@
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 10:56:21 by msainton          #+#    #+#             */
-/*   Updated: 2021/07/07 14:18:49 by msainton         ###   ########.fr       */
+/*   Updated: 2021/07/07 14:38:31 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,31 +52,31 @@ static int	ft_error(char *dest)
 int	get_next_line(int fd, char **line)
 { 
 	char		buf[BUFFER_SIZE + 1];
-	static char	*dest;
+	static char	*dest[1024];
 	int			ret;
 	
 	ret = 1;
 	if (BUFFER_SIZE < 1 || fd < 0 || !line || read(fd, NULL, 0) != 0)
-		return (ft_error(dest));
-	if (!dest)
+		return (ft_error(dest[fd]));
+	if (!dest[fd])
 	{
-		dest = (char *)malloc(sizeof(char) * 1);
-		dest[0] = '\0';
+		dest[fd] = (char *)malloc(sizeof(char) * 1);
+		dest[fd][0] = '\0';
 	}
-	while (ret != 0 && check(dest) == 0)
+	while (ret != 0 && check(dest[fd]) == 0)
 	{
 		ret = read(fd, buf, BUFFER_SIZE);
 		if (ret == -1)
-			return (ft_error(dest));
+			return (ft_error(dest[fd]));
 		buf[ret] = '\0';
-		dest = ft_strjoin(dest, buf);
+		dest[fd] = ft_strjoin(dest[fd], buf);
 	}
-	*line = stock_line(dest);
-	dest = stock_rest(dest);
+	*line = stock_line(dest[fd]);
+	dest[fd] = stock_rest(dest[fd]);
 	if (ret == 0)
 	{
-		free(dest);
-		dest = 0;
+		free(dest[fd]);
+		dest[fd] = 0;
 		return (0);
 	}
 	return (1);
