@@ -6,7 +6,7 @@
 /*   By: msainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 10:59:12 by msainton          #+#    #+#             */
-/*   Updated: 2021/07/07 14:15:51 by msainton         ###   ########.fr       */
+/*   Updated: 2021/07/12 19:25:59 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,25 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	return (dest);
 }
 
-char	*stock_line(char *dest)
+char	*stock_line(char *dest, int ret)
 {
 	size_t	a;
 	char	*str;
 
 	a = 0;
-	while (dest[a] != '\0' && dest[a] != '\n')
+	while (dest[a] != '\n' && dest[a] != '\0')
 		a++;
-	str = (char *)malloc(sizeof(char) * a + 1);
+	str = (char *)malloc(sizeof(char) * (a + 2));
 	if (!str)
 		return (NULL);
 	a = 0;
-	while (dest[a] != '\0' && dest[a] != '\n')
+	while (dest[a] != '\n' && dest[a] != '\0')
 	{
 		str[a] = dest[a];
 		a++;
 	}
+	if (ret > 0)
+		str[a++] = '\n';
 	str[a] = '\0';
 	return (str);
 }
@@ -83,12 +85,13 @@ char	*stock_rest(char *dest)
 	while (dest[a])
 		a++;
 	b = 0;
-	while (dest[b] != '\0' && dest[b] != '\n')
+	while (dest[b] != '\n' && dest[b] != '\0')
 		b++;
+	b += 1;
 	str = (char *)malloc(sizeof(char) * (a - b + 1));
 	if (!str)
 		return (NULL);
-	a = -1;
+	a = 0;
 	while (dest[b] != '\0')
 		str[a++] = dest[b++];
 	str[a] = '\0';
